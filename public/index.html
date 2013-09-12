@@ -2,14 +2,26 @@
 <html>
   <head>
     <title>Scoreboard</title>
-    <link rel="stylesheet",type="text/css" href="styles.css"/>
-    <link rel="stylesheet",type="text/css" href="scoreboard.css"/>
+    <link rel="stylesheet",type="text/css" href="css/styles.css"/>
+    <link rel="stylesheet",type="text/css" href="css/scoreboard.css"/>
     <script type="text/javascript" src="/socket.io/socket.io.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-    <script type="text/javascript" src="scoreboard.js"></script>
+    <script type="text/javascript" src="js/scoreboard.js"></script>
   </head>
   <body>
-    	 <div id="tabela"></div>
+    <div id="table"></div>
+    <div id="scoreboard" class="">
+      <audio id="goalAudio" src="sound/gol.wav" preload="auto"></audio>
+      <audio id="crowdAudio" src="sound/crowd.wav" preload="auto"></audio>
+      <div id="time1">
+        <div id="score1" class="score">1</div>
+      </div>
+      <div id="vs">VS</div>
+      <div id="time2">
+        <div id="score1" class="score">0</div>
+      </div>
+    </div>
+
     <div id="wrapper" style="display: none">
       <h1>Scoreboard</h1>
       <div id="messages"></div>
@@ -20,69 +32,16 @@
       <textarea id="message"></textarea>
       <input id="send" type="submit" value="Send"/>
     </div>
+
+
     <script type="text/javascript">
     	function scoreBoardOut(){
 			$('#scoreboard').fadeOut();
 		}
       $(document).ready(function() {
-		Chat.initialize('http://sporttcc1.eu01.aws.af.cm/');
-        //Chat.initialize('http://localhost:3000');
-         var positions = ["bottom_right", "top_right", "top_left", "bottom_left"];
-		var currentPosition = 0;
-		$("#scoreboard").attr("class",positions[currentPosition]);
-		
-        function keydownhandler (e) 
-		{ 
-			if (e.keyCode == 51) 
-		  	{
-  		    	$('#scoreboard').fadeIn();
-		       setTimeout(scoreBoardOut,3000);
-		      }
-			if (e.keyCode == 49) 
-		  	{
-		  		currentPosition++;
-		  		if(currentPosition > positions.length)
-		  			currentPosition = 0;
-		  		$("#scoreboard").attr("class",positions[currentPosition]);
-		  	} 
-			if (e.keyCode == 50) 
-		  	{
-		  		var tabela = $("#tabela");
-		  		if(tabela.css("display") == "none")
-		  			tabela.fadeIn();
-		  		else
-		  			tabela.fadeOut();
-		  	}
-		  // if (e.keyCode == VK_ENTER) 
-		  // { 
-		    // // show playcontrol keyboard on OK 
-		    // // link the play-action to play_video(); 
-		  // } 
-		  // if (e.keyCode == VK_PLAY) 
-		  // { 
-		    // play_video(); 
-		  // } 
-		} 
-		 
-		document.addEventListener("keydown", keydownhandler, true); 
-        
-  
-
-
+		//Scoreboard.initialize('http://sporttcc1.eu01.aws.af.cm/');
+        Scoreboard.initialize('http://localhost:3000');
       });
     </script>
-    
-    <div id="scoreboard" class="">
-    	<audio id="golAudio" src="gol.wav" preload="auto"></audio>
-    	<audio id="crowdAudio" src="crowd.wav" preload="auto"></audio>
-    	<div id="time1">
-    		<div id="score1" class="score">1</div>
-    	</div>
-  		<div id="vs">VS</div>
-    	<div id="time2">
-    		<div id="score1" class="score">0</div>
-    	</div>
-    	
-    </div>
   </body>
 </html>

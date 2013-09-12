@@ -1,5 +1,5 @@
 body {
-  background-color : #6B6B6B;
+  background-color : #002b5e;
   color: #D9D4C7;
 /*  width: 2180px;
   height: 720px;*/
@@ -10,11 +10,44 @@ body {
   margin : 0 auto;
   padding : 20px;
   width : 600px;
-  background-color : #0B2126;
+/*  background-color : #0B2126;*/
 }
 
-#tabela{
-	background-image: url(tabela.png);
+
+
+
+img.ri
+{
+	
+/*
+    max-width: 80%;
+	top: 10%;
+	left: 10%;
+	border-radius: 3px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.9);
+*/
+}
+
+img.ri:empty
+{
+	top: 50%;
+	left: 50%;
+}
+
+@media screen and (orientation: portrait) {
+  img.ri {
+      max-width: 90%;
+  }
+}
+
+@media screen and (orientation: landscape) {
+  img.ri {
+      max-height: 90%;
+  }
+}
+
+#table{
+	background-image: url(../images/tabela.png);
 	left: 15%;
 	display: none;
 	width: 950px;
@@ -33,6 +66,10 @@ h1 {
   font-family : Arial, sans-serif;
   line-height : 1em;
   filter: dropshadow(color=#6B6B6B, offx=1, offy=1);
+}
+h2{
+    color:white;
+    text-align: center;
 }
 
 #messages {

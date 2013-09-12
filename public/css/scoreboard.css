@@ -12,10 +12,11 @@
 	min-height: 210px;
 	position: fixed;
 	display: none;
-	background-image: url(goal.png);
+	background-image: url(../images/goal.png);
 	background-size: 100%;
 	background-repeat: no-repeat;
 }
+
 #time1 {
 	background-color: red;
 	position: absolute;

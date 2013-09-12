@@ -1,36 +1,115 @@
-<!DOCTYPE HTML>
-<html>
-  <head>
-    <title>Control</title>
-    <link rel="stylesheet",type="text/css" href="styles.css"/>
-    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-    <script type="text/javascript" src="control-sportiv.js"></script>
-    <style type="text/css">
-        #send {
-			margin: 0 0 20px 0;
-			background-color: white;
-			color: #555;
-			text-align: center;
-			text-transform: uppercase;
-			text-shadow: 1px 1px 0px #6B6B6B;
-			letter-spacing: 2px;
-			font-weight: bold;
-			font-size: 176px;
-			font-family: Arial, sans-serif;
-			line-height: 1em;
-		}
-    </style>
-  </head>
-  <body>
-    <div id="wrapper">
-      <input id="send" type="submit" value="GOL!!!"/>
-    </div>
-    <script type="text/javascript">
-      $(document).ready(function() {
-        SITVC.initialize('http://sporttcc1.eu01.aws.af.cm/');
-        //SITVC.initialize('http://localhost:3000');
-      });
-    </script>
-  </body>
-</html>
+    <!DOCTYPE HTML>
+    <html ng-app="sporttv">
+      <head>
+        <title>Control</title>
+        <link rel="stylesheet",type="text/css" href="css/styles.css"/>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <style type="text/css">
+            
+        .hero-unit{
+    background: rgb(122,188,255); /* Old browsers */
+    background: -moz-linear-gradient(-45deg,  rgba(122,188,255,1) 0%, rgba(96,171,248,1) 44%, rgba(5,111,177,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(122,188,255,1)), color-stop(44%,rgba(96,171,248,1)), color-stop(100%,rgba(5,111,177,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(-45deg,  rgba(122,188,255,1) 0%,rgba(96,171,248,1) 44%,rgba(5,111,177,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(-45deg,  rgba(122,188,255,1) 0%,rgba(96,171,248,1) 44%,rgba(5,111,177,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(-45deg,  rgba(122,188,255,1) 0%,rgba(96,171,248,1) 44%,rgba(5,111,177,1) 100%); /* IE10+ */
+    background: linear-gradient(135deg,  rgba(122,188,255,1) 0%,rgba(96,171,248,1) 44%,rgba(5,111,177,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7abcff', endColorstr='#056fb1',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    
+    
+                border-radius:0px 0px 100px 100px;
+                
+            -webkit-box-shadow: 0px 8px 0px 8px rgba(0,43,94,1), inset 0px -9px 0px 5px rgba(2,92,154,1);
+            -moz-box-shadow: 0px 8px 0px 8px rgba(0,43,94,1),inset 0px -9px 0px 5px rgba(2,92,154,1) ;
+            box-shadow: 0px 8px 0px 4px rgba(0,43,94,1), inset 0px -5px 0px 5px rgba(2,92,154,1);
+            }
+    
+            #send {
+                margin: 0 0 20px 0;
+                background-color: white;
+                color: #555;
+                text-align: center;
+                text-transform: uppercase;
+                text-shadow: 1px 1px 0px #6B6B6B;
+                letter-spacing: 2px;
+                font-weight: bold;
+                font-size: 176px;
+                font-family: Arial, sans-serif;
+                line-height: 1em;
+            }
+        </style>
+      </head>
+      <body>
+          <div class="container">
+    
+          <!-- Main hero unit for a primary marketing message or call to action -->
+           
+              <div class="hero-unit">
+            
+            <h1>Configurações</h1>
+         
+          
+              <div class="row-fluid">
+            <div class="span3">
+              <h2>TIMES</h2>
+               <p><a href="#" class="btn btn-primary btn-large span12">
+<img src="images/soccerTeamLogoFake.png" class="ri" /></a></p>
+            </div>
+            <div class="span3">
+              <h2>NOTIFICAÇÕES</h2>
+             <div class="btn-group-vertical btn-group-lg btn-group-justified span12"  bs-buttons-checkbox>
+               <button type="button" class="btn btn-primary" ng-model="notification.goals">
+                   <img src="images/soccerTeamLogoFake.png" height="30" width="30" />Gols</button>
+              <button type="button" class="btn btn-primary btn-lg" ng-model="notification.cards">Cartões</button>
+              <button type="button" class="btn btn-primary" ng-model="notification.crono">Tempos</button>
+              <button type="button" class="btn btn-primary" ng-model="notification.replace">Substituições</button>
+                  <button type="button" class="btn btn-primary" ng-model="notification.message">Mensagens</button>
+            </div>
+
+               </div>
+            <div class="span3">
+              <h2>POSIÇÃO</h2>
+               <div class="btn-group-vertical" bs-buttons-radio>
+               <button type="button" class="btn btn-primary" ng-model="radio.left">
+                   <img src="images/soccerTeamLogoFake.png" height="50" width="50" />Left</button>
+              <button type="button" class="btn btn-primary" ng-model="radio.middle">Middle</button>
+              <button type="button" class="btn btn-primary" ng-model="radio.right">Right</button>
+            </div>
+            </div>
+            <div class="span3">
+              <h2>SOM</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn" href="#">View details »</a></p>
+            </div>
+          </div>
+    
+          </div>
+    
+          <!-- Example row of columns -->
+        
+          <hr>
+    
+          <footer>
+            <p>© Company 2013</p>
+          </footer>
+    
+        </div>
+        <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/0.7.4/angular-strap.min.js"></script>
+        <script type="text/javascript" src="js/control-sportiv.js"></script>
+        <div id="wrapper">
+          <input id="send" type="submit" value="GOL!!!"/>
+        </div>
+        <script type="text/javascript">
+            var app = angular.module('sporttv', ['$strap.directives']);
+            
+          $(document).ready(function() {
+            //SITVC.initialize('http://sporttcc1.eu01.aws.af.cm/');
+            SITVC.initialize('http://localhost:3000');
+          });
+        </script>
+      </body>
+    </html>
