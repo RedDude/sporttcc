@@ -1,115 +1,136 @@
-    <!DOCTYPE HTML>
+﻿    <!DOCTYPE HTML>
     <html ng-app="sporttv">
-      <head>
-        <title>Control</title>
-        <link rel="stylesheet",type="text/css" href="css/styles.css"/>
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <style type="text/css">
-            
-        .hero-unit{
-    background: rgb(122,188,255); /* Old browsers */
-    background: -moz-linear-gradient(-45deg,  rgba(122,188,255,1) 0%, rgba(96,171,248,1) 44%, rgba(5,111,177,1) 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(122,188,255,1)), color-stop(44%,rgba(96,171,248,1)), color-stop(100%,rgba(5,111,177,1))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(-45deg,  rgba(122,188,255,1) 0%,rgba(96,171,248,1) 44%,rgba(5,111,177,1) 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(-45deg,  rgba(122,188,255,1) 0%,rgba(96,171,248,1) 44%,rgba(5,111,177,1) 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(-45deg,  rgba(122,188,255,1) 0%,rgba(96,171,248,1) 44%,rgba(5,111,177,1) 100%); /* IE10+ */
-    background: linear-gradient(135deg,  rgba(122,188,255,1) 0%,rgba(96,171,248,1) 44%,rgba(5,111,177,1) 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7abcff', endColorstr='#056fb1',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-    
-    
-                border-radius:0px 0px 100px 100px;
-                
-            -webkit-box-shadow: 0px 8px 0px 8px rgba(0,43,94,1), inset 0px -9px 0px 5px rgba(2,92,154,1);
-            -moz-box-shadow: 0px 8px 0px 8px rgba(0,43,94,1),inset 0px -9px 0px 5px rgba(2,92,154,1) ;
-            box-shadow: 0px 8px 0px 4px rgba(0,43,94,1), inset 0px -5px 0px 5px rgba(2,92,154,1);
-            }
-    
-            #send {
-                margin: 0 0 20px 0;
-                background-color: white;
-                color: #555;
-                text-align: center;
-                text-transform: uppercase;
-                text-shadow: 1px 1px 0px #6B6B6B;
-                letter-spacing: 2px;
-                font-weight: bold;
-                font-size: 176px;
-                font-family: Arial, sans-serif;
-                line-height: 1em;
-            }
-        </style>
-      </head>
-      <body>
-          <div class="container">
-    
-          <!-- Main hero unit for a primary marketing message or call to action -->
-           
-              <div class="hero-unit">
-            
-            <h1>Configurações</h1>
-         
+    <head>
+      <title>Control</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <link href="css/bootstrap-combined.min.css" rel="stylesheet">
+       <link rel="stylesheet",type="text/css" href="css/bootstrap-modal.css"/>
+
+      <link rel="stylesheet",type="text/css" href="css/hero-unit.css"/>
+      <link rel="stylesheet",type="text/css" href="css/3Dbuttons.css"/>
+      <link rel="stylesheet",type="text/css" href="css/AddonButtons.css"/>
+      <link rel="stylesheet",type="text/css" href="css/sporttv-font-ico.css"/>
+      <link rel="stylesheet",type="text/css" href="css/styles.css"/>
+      <style type="text/css">
+      </style>
+    </head>
+    <body ng-controller="SporttvCtrl">
+      <div class="container">
+
+        <!-- Main hero unit for a primary marketing message or call to action -->
+
+        <div class="hero-unit">
+
+          <h1>Configurações</h1>
+
           
-              <div class="row-fluid">
+          <div class="row-fluid">
             <div class="span3">
               <h2>TIMES</h2>
-               <p><a href="#" class="btn btn-primary btn-large span12">
-<img src="images/soccerTeamLogoFake.png" class="ri" /></a></p>
-            </div>
-            <div class="span3">
-              <h2>NOTIFICAÇÕES</h2>
-             <div class="btn-group-vertical btn-group-lg btn-group-justified span12"  bs-buttons-checkbox>
-               <button type="button" class="btn btn-primary" ng-model="notification.goals">
-                   <img src="images/soccerTeamLogoFake.png" height="30" width="30" />Gols</button>
-              <button type="button" class="btn btn-primary btn-lg" ng-model="notification.cards">Cartões</button>
-              <button type="button" class="btn btn-primary" ng-model="notification.crono">Tempos</button>
-              <button type="button" class="btn btn-primary" ng-model="notification.replace">Substituições</button>
-                  <button type="button" class="btn btn-primary" ng-model="notification.message">Mensagens</button>
-            </div>
+              <p><a href="#" bs-modal="'modal.html'" class="btn btn-primary btn-large span12">
+                <carousel interval="interval">
+                    <slide ng-repeat="slide in slides" active="slide.active">
+                      <img ng-src="badges/{{slide.image}}.png" width="200" class="ri" style="margin:auto;">
+                    </slide>
+                  </carousel> 
+               </a></p>
+              </div>
 
-               </div>
+              <div class="span3">
+               <h2>NOTIFICAÇÕES</h2>
+                  <div class="btn-group-vertical-3d">
+<!--                 <div class="input-prepend input-append">
+                  <span class="add-on">$</span><button type="button" class="btn btn-large btn-primary" ng-model="notification.goals">Gols</button>
+                </div>
+              -->
+              <button type="button" class="btn btn-large btn-block" btn-checkbox ng-model="notification.goals"><div class="fs1" aria-hidden="true" data-icon="">Gols</div></button>
+              <button type="button" class="btn btn-large btn-block" btn-checkbox ng-model="notification.cards"><div class="fs1" aria-hidden="true" data-icon="">Cartões</div></button>
+              <button type="button" class="btn btn-large btn-block" btn-checkbox ng-model="notification.chronos"><div class="fs1" aria-hidden="true" data-icon="">Tempos</div></button>
+              <button type="button" class="btn btn-large btn-block" btn-checkbox ng-model="notification.replace"><div class="fs1" aria-hidden="true" data-icon="">Substituições</div></button>
+             <button type="button" class="btn btn-large btn-block" btn-checkbox ng-model="notification.message"><div class="fs1" aria-hidden="true" data-icon="">Lances</div></button>
+
+               <!-- <div class="btn-group-vertical-3d span12"  bs-buttons-checkbox> -->
+<!--                 <div class="input-prepend input-append">
+                  <span class="add-on">$</span><button type="button" class="btn btn-large btn-primary" ng-model="notification.goals">Gols</button>
+                </div>
+              -->
+<!--               <button type="button" class="btn btn-large span3" ng-model="notification.goals"><div class="fs1" aria-hidden="true" data-icon=""></div></button> -->
+        <!--       <button type="button" class="btn btn-large btn-primary span9" ng-model="notification.goals">Gols</button>
+              <button type="button" class="btn btn-large span3" ng-model="notification.cards">$</button>
+              <button type="button" class="btn btn-large btn-primary span9" ng-model="notification.cards">Gols</button>
+               <button type="button" class="btn btn-large span3" ng-model="notification.cards">$</button>
+              <button type="button" class="btn btn-large btn-primary span9" ng-model="notification.cards">Gols</button>
+        
+                          <div class="btn-group">
+              <button type="button" class="btn btn-large ng-valid ng-dirty span3" ng-model="notification.goals" bs-button="" data-toggle="button">$</button>
+              <button type="button" class="btn btn-large btn-primary ng-valid ng-dirty span9" ng-model="notification.cards" bs-button="" data-toggle="Cartões">Gols</button>
+            </div> -->
+
+<!--                 <button type="button" class="btn btn-large btn-block btn-primary" ng-model="notification.crono">Tempos</button>
+                <button type="button" class="btn btn-large btn-block btn-primary" ng-model="notification.replace">Substituições</button>
+                <button type="button" class="btn btn-large btn-block btn-primary" ng-model="notification.message">Mensagens</button> -->
+              </div>
+            </div>
             <div class="span3">
               <h2>POSIÇÃO</h2>
-               <div class="btn-group-vertical" bs-buttons-radio>
-               <button type="button" class="btn btn-primary" ng-model="radio.left">
-                   <img src="images/soccerTeamLogoFake.png" height="50" width="50" />Left</button>
-              <button type="button" class="btn btn-primary" ng-model="radio.middle">Middle</button>
-              <button type="button" class="btn btn-primary" ng-model="radio.right">Right</button>
-            </div>
-            </div>
-            <div class="span3">
+              <div class="btn-group-vertical-3d" >
+                <button type="button" class="btn btn-large btn-inverse btn-block" 
+                ng-model="position" btn-radio="'ne'">
+                <div class="fs1" aria-hidden="true" data-icon="">Superior Direto</div></button>
+                <button type="button" class="btn btn-large btn-inverse btn-block" 
+                btn-radio="'se'" ng-model="position"><div class="fs1" aria-hidden="true" data-icon="">Inferior Direto</div></button>
+                <button type="button" class="btn btn-large btn-inverse btn-block" 
+                btn-radio="'sw'" ng-model="position"><div class="fs1" aria-hidden="true" data-icon="">Inferior Esquerdo</div></button>
+                <button type="button" class="btn btn-large btn-inverse btn-block" 
+                btn-radio="'nw'" ng-model="position"><div class="fs1" aria-hidden="true" data-icon="">Superior Esquerdo</div></button>
+               <button type="button" class="btn btn-large btn-inverse btn-block" 
+               btn-radio="'full'" ng-model="position"><div class="fs1" aria-hidden="true" data-icon="">Comemorativo</div></button>
+               </div>
+             </div>
+             <div class="span3">
               <h2>SOM</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn" href="#">View details »</a></p>
+             <button id="no-sound" class="btn btn-primary btn-large span12" ng-model="noSound" bs-button>
+                <div id="sound-img"><img src="images\empty.png" class="ri" /></div></button>
+              </div>
             </div>
           </div>
-    
-          </div>
-    
-          <!-- Example row of columns -->
+
+
+        <!-- Example row of columns -->
         
-          <hr>
-    
-          <footer>
-            <p>© Company 2013</p>
-          </footer>
-    
-        </div>
-        <script type="text/javascript" src="/socket.io/socket.io.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/0.7.4/angular-strap.min.js"></script>
-        <script type="text/javascript" src="js/control-sportiv.js"></script>
-        <div id="wrapper">
-          <input id="send" type="submit" value="GOL!!!"/>
-        </div>
-        <script type="text/javascript">
-            var app = angular.module('sporttv', ['$strap.directives']);
-            
-          $(document).ready(function() {
-            //SITVC.initialize('http://sporttcc1.eu01.aws.af.cm/');
-            SITVC.initialize('http://localhost:3000');
-          });
-        </script>
-      </body>
-    </html>
+        <hr>
+
+        <footer>
+          <p>© Rediant 2013</p>
+        </footer>
+
+      </div>
+      <script src="/socket.io/socket.io.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <script src="js/angular-strap.min.js"></script>
+      <script src="js/ui-bootstrap-custom-0.6.0.min.js"></script>
+      <script src="js/ui-bootstrap-custom-tpls-0.6.0.min.js"></script>
+      <script src="js/control-sportiv.js"></script>
+      <script src="js/bootstrap-modal.js"></script>
+      <script src="js/bootstrap-modalmanager.js"></script>
+      <script src="js/controllers/localStorageModule.js"></script>
+      <script src="js/controllers/SporttvCtrl.js"></script>
+
+      <div id="wrapper">
+        <input id="send" type="submit" value="GOL!!!"/>
+      </div>
+      <script type="text/javascript">
+
+        var app = angular.module('sporttv', ['$strap.directives', 'ui.bootstrap', 'LocalStorageModule']);
+
+        $(document).ready(function() {
+
+        //SITVC.initialize('http://sporttcc1.eu01.aws.af.cm/');
+        SITVC.initialize('http://localhost:3000');
+      });
+    </script>
+  </body>
+  </html>

@@ -67,6 +67,7 @@ angular.module('$strap.directives')
           }
         } else {
           scope.$apply(function () {
+		
             controller.$setViewValue(!controller.$modelValue);
           });
         }
@@ -101,7 +102,7 @@ angular.module('$strap.directives')
 
   return {
     restrict: 'A',
-    require: '?ngModel',
+    require: 'ngModel',
     compile: function compile(tElement, tAttrs, transclude) {
       tElement.attr('data-toggle', 'buttons-checkbox').find('a, button').each(function(k, v) {
         $(v).attr('bs-button', '');

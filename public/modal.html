@@ -1,0 +1,23 @@
+
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <h3>Modal header</h3>
+</div>
+<div class="modal-body" >
+  <div data-fade="1" ngModel="activeTab" bs-tabs>
+    <div ng-repeat="tab in tabs" data-title="{{tab.name}}"><p>
+      <div class="btn-group-vertical-3d">
+        <button ng-repeat="team in tab.teams track by team.id" class="btn btn-large btn-block" btn-checkbox  btn-checkbox-true="{{team.id}}" btn-checkbox-false="false"
+        ng-model="teams[team.id]">
+        <div class="fs1" aria-hidden="true" >
+          <img ng-src="badges/{{team.badge}}.png" class="ri badge-icon" />{{team.name}}
+        </div></button>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<div class="modal-footer">
+  <button type="button" class="btn" ng-click="hide()">Fechar</button>
+</div>
+</div>

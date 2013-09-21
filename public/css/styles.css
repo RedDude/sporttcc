@@ -13,12 +13,28 @@ body {
 /*  background-color : #0B2126;*/
 }
 
+.carousel-control {
+    display: none;
+}
 
+.btn-large {
+font-size: 19.5px;
+}
 
+button #sound-img{
+  background-image: url(../images/sound.png);
+  background-size:100% 100%;
+}
 
+button.active #sound-img, button:active #sound-img{
+  background-image: url(../images/no-sound.png);
+}
+
+.badge-icon{
+margin: -5px 0 0px 5px;
+}
 img.ri
 {
-	
 /*
     max-width: 80%;
 	top: 10%;
@@ -54,7 +70,7 @@ img.ri:empty
 	height: 560px;
 	position: fixed;
 }
-h1 {
+.hero-unit h1 { 
   margin : 0 0 20px 0;
   color : #ededed;
   text-align : center;
@@ -67,10 +83,42 @@ h1 {
   line-height : 1em;
   filter: dropshadow(color=#6B6B6B, offx=1, offy=1);
 }
-h2{
+
+.hero-unit h2{
+font-size : 26px;
     color:white;
     text-align: center;
+    text-align : center;
+    text-transform : uppercase;
+    text-shadow: 1px 1px 0px #6B6B6B;
 }
+
+@media (min-width: 1200px){
+  .hero-unit h1 { font-size : 100px;}
+  .hero-unit h2 { font-size : 36px;}
+  a .btn{ height: 226px; }
+}
+
+@media (min-width: 768px) and (max-width: 979px) { 
+  .hero-unit h1 { font-size : 65px;}
+.hero-unit h2 { font-size : 20px;}
+     .fs1 { font-size : 14px;}
+}
+ 
+@media (max-width: 767px) {   
+  .hero-unit h1 { font-size : 36px;}
+  .hero-unit h2 { font-size : 36px;}
+
+  
+}
+/* Landscape phones and down */
+@media (max-width: 480px) { 
+  .hero-unit h1 { font-size : 26px;}
+  .hero-unit h2 { font-size : 36px;}
+}
+
+
+
 
 #messages {
   overflow : auto;
