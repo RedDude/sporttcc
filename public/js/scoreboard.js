@@ -1,14 +1,21 @@
 (function() {
-
-
 	window.Scoreboard = {
 		socket: null,
-		POSITIONS: ["bottom_right", "top_right", "top_left", "bottom_left"],
-		currentPosition: 0,
+		timeout: null,
+		POSITIONS: ["ne", "se", "sw", "nw"],
+		currentPositionIndex: 0,
+		position: null,
+		lastPosition: null,
 
 		initialize: function(socketURL) {
 			this.socket = io.connect(socketURL);
 			
+			this.position = localStorage.getItem('ls.config.position');
+			if(this.position == null){
+				this.position = 'nw';
+			}
+			Scoreboard.changeScoreboardPosition(this.position);
+
 			document.addEventListener("keydown", this.keydownhandler, true);
 
 			$('#send').click(function() {
@@ -39,17 +46,69 @@
 			return false;
 		},
 
+		gols : 0
+		,
 		notify: function(data) {
+
+			// for(var key in data){
+			// 	if(data[key] == true){
+			// 		action = {
+			// 			"playerId": playerId,
+			// 			"action": key
+			// 		}
+			// 		SITVC.send(action);
+			// 	}
+			// }
+
+
+			window.clearTimeout(Scoreboard.timeout);
+		
+			if(data.type == "goal"){
+				$("#goal-notification").show();
+				$("#score-notification").show();
+				$("#card-notification").hide();
+				Scoreboard.gols += 1;
+
+				var noSound = localStorage.getItem('ls.config.noSound');
+				if(noSound == "null" || noSound == null || noSound == false){
+					document.getElementById('goalAudio').play();
+					document.getElementById('crowdAudio').play();
+				}
+
+				teamHome.setValue(Scoreboard.gols);
+			}
+
+			if(data.type == "card"){
+				$("#goal-notification").hide();
+				$("#score-notification").hide();
+				$("#card-notification").show();
+				var noSound = localStorage.getItem('ls.config.noSound');
+				if(noSound == "null" || noSound == null || noSound == false){
+					document.getElementById('crowdAudio').play();
+				}
+				var iconSrc = "images/yellowCard.svg";
+				if(data.isRed == true)
+					iconSrc = "images/redCard.svg"
+
+				$("#card-notification-icon").attr('src',iconSrc);
+				$("#card-notification-name").text(data.player);
+			}
+		
 			$('#scoreboard').fadeIn();
-			var gols = parseInt($('#score1').text());
-			document.getElementById('goalAudio').play();
-			document.getElementById('crowdAudio').play();
-			$('#score1').text(gols + 1);
-			setTimeout(scoreBoardOut, 3000);
+			Scoreboard.timeout = setTimeout(Scoreboard.scoreboardOut, 3000);
 		},
 
 		scoreboardOut: function() {
-			$('#scoreboard').fadeOut();
+		
+			$('#scoreboard').fadeOut(function(){
+				$("#goal-notification").hide();
+				$("#score-notification").show();
+				$("#card-notification").hide();
+			});
+		},
+
+		configToggle: function() {
+			$('#config').slideToggle();
 		},
 
 		displayTable: function() {
@@ -59,25 +118,45 @@
 				else
 					table.fadeOut();
 		},
+
+		displayScoreboard: function() {
+			var scoreboard = $("#scoreboard");
+				if (scoreboard.css("display") == "none")
+					scoreboard.fadeIn();
+				else
+					Scoreboard.scoreboardOut();
+		},
+
+		changeScoreboardPosition: function(position) {
+			$("#scoreboard").removeClass(Scoreboard.lastPosition);
+			$("#scoreboard").addClass(position);
+			Scoreboard.lastPosition = position;
+		},
 		
-		changeScoreboardPosition: function() {
-			Scoreboard.currentPosition++;
-				if (Scoreboard.currentPosition == Scoreboard.POSITIONS.length)
-					Scoreboard.currentPosition = 0;
-				$("#scoreboard").attr("class", Scoreboard.POSITIONS[Scoreboard.currentPosition]);
+		changeKeyScoreboardPosition: function() {
+			$("#scoreboard").removeClass(Scoreboard.POSITIONS[Scoreboard.currentPositionIndex]);
+			Scoreboard.currentPositionIndex++;
+				if (Scoreboard.currentPositionIndex == Scoreboard.POSITIONS.length)
+					Scoreboard.currentPositionIndex = 0;
+				$("#scoreboard").addClass(Scoreboard.POSITIONS[Scoreboard.currentPositionIndex]);
 		},
 
 		keydownhandler: function(e) {
 			if (e.keyCode == 51) {
-				$('#scoreboard').fadeIn();
-				setTimeout(scoreBoardOut, 3000);
+				Scoreboard.displayScoreboard();
+				// $('#scoreboard').fadeIn();
+				// setTimeout(scoreBoardOut, 3000);
 			}
 			if (e.keyCode == 49) {
-				Scoreboard.changeScoreboardPosition(); 
+				Scoreboard.changeKeyScoreboardPosition(); 
 			}
 			if (e.keyCode == 50) {
 				Scoreboard.displayTable();
 			}
+			if (e.keyCode == 54) {
+				Scoreboard.configToggle();
+			}
+
 			// if (e.keyCode == VK_ENTER) 
 			// { 
 			// // show playcontrol keyboard on OK 

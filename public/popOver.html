@@ -1,0 +1,23 @@
+<form name="popoverForm" ng-controller="PopoverCtrl">
+  <button type="button" class="close" ng-click="hide()" aria-hidden="true">×</button>
+
+  <p ng-bind-html-unsafe="popover.content"></p>
+  <div class="btn-group-vertical-3d" bs-buttons-radio>
+    <button type="button" class="btn btn-block" ng-model="actions.own"> 
+      <span class="goal_own-icon">
+      </span>Contra</button>
+      <button type="button" class="btn btn-block" ng-model="actions.red"> 
+        <span class="goal_own-icon">
+        </span>Vermelho</button>
+        <button type="button" class="btn btn-block" ng-model="actions.yellow">
+          <span class="goal-icon">
+          </span>Amarelo</button>
+          <button type="button" class="btn btn-block" ng-model="actions.goal">
+            <span class="goal-icon">
+            </span>Gol</button>
+          </div>
+          <div class="form-actions">
+            <!-- <button type="button" class="btn" ng-click="hide()">Close</button> -->
+            <button class="btn btn-primary" ng-click="sendAction(player.id);hide()">Save changes</button>
+          </div>
+        </form>

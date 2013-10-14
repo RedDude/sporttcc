@@ -1,6 +1,6 @@
 
 <div class="modal-header">
-  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<button type="button" class="close" ng-click="hide()" aria-hidden="true">×</button>
   <h3>Modal header</h3>
 </div>
 <div class="modal-body" >
@@ -10,7 +10,7 @@
         <button ng-repeat="team in tab.teams track by team.id" class="btn btn-large btn-block" btn-checkbox  btn-checkbox-true="{{team.id}}" btn-checkbox-false="false"
         ng-model="teams[team.id]">
         <div class="fs1" aria-hidden="true" >
-          <img ng-src="badges/{{team.badge}}.png" class="ri badge-icon" />{{team.name}}
+          <img ng-src="badges/{{team.badge}}.svg" height="47" width="47" ="47" class="ri badge-icon" />{{team.name}}
         </div></button>
       </div>
     </div>
