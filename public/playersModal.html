@@ -6,12 +6,12 @@
 <div class="modal-body" >
 			<!-- <div class="btn-group-vertical-3d"> -->
 			<div class="player-group" >
-				<div class="row-fluid" ng-repeat="player in teamModal track by player.id">
+				<div class="row-fluid" ng-repeat="player in teamModal track by player.idPlayer">
 					<div class="btn-group span12">
 						<button class="btn btn-large btn-primary span10" btn-checkbox data-unique="1" btn-checkbox-true="{{player.id}}" btn-checkbox-false="false"
 						ng-model="player.id">
 						<div class="" aria-hidden="true">
-							{{player.name}}
+							{{player.number}} - {{player.name}}
 						</div>
 					</button>
 					<button class="btn btn-large span1" data-unique="1" data-placement="left" bs-popover="'popOver.html'" ng-controller="PopoverCtrl" ><span class="btn-icon" aria-hidden="true" data-icon=""></span>

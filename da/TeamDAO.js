@@ -6,7 +6,6 @@ function TeamDAO(con) {
     return {
     	//public
     	list : function(callback) {
-    		console.log("list Team");
     		connection.query('SELECT * FROM team', function(err, result, fields) {
     			if (err){ throw err; }
     			if(callback)
@@ -23,6 +22,24 @@ function TeamDAO(con) {
     					callback(result);
     				return result;
     			});
+    	},
+    	getPlayers : function(id,callback) {
+    		connection.query('SELECT * FROM player WHERE id_team = ?', 
+    			[id], function(err, result, fields) {
+    			if (err){ throw err; }
+    			if(callback)
+    				callback(result);
+    			return result;
+    		});
+    	},
+    	getById : function(id,callback) {
+    		connection.query('SELECT * FROM team WHERE id_team = ?', 
+    			[id], function(err, result, fields) {
+    			if (err){ throw err; }
+    			if(callback)
+    					callback(result[0]);
+    			return result[0];
+    		});
     	}
     }
 };

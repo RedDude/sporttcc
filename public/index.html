@@ -23,7 +23,7 @@
         <p><a href="#" id="teams-button" ng-click="showModal();" class="btn btn-primary btn-large span12">
           <carousel interval="interval">
             <slide ng-repeat="slide in slides" active="slide.active">
-              <img ng-src="badges/{{slide.image}}.svg" width="200" class="ri" style="margin:auto;">
+              <img ng-src="badges/{{slide.image}}.svg" width="200" class="ri" >
             </slide>
           </carousel> 
         </a></p>
@@ -71,20 +71,20 @@
 <audio id="crowdAudio" src="sound/crowd.wav" preload="auto"></audio>
 <audio id="goalAudio" src="sound/gol.wav" preload="auto"></audio>
 <audio id="booAudio" src="sound/boo.wav" preload="auto"></audio>
- <div id="goal-notification">
 
- <div id="score-notification">
+
+ <div id="goal-notification">
   <div class="scoreboard-header horizontal stripes">
     <h3><div class="fs2 text-stroke" aria-hidden="true"><img width="64" class="ri ball-icon" src="images/goal.png">GOOOL!!!</div></h3>
   </div>
-  </div>
-  </div>
+</div>
+   <div id="score-notification">
   <div class="scoreboard-body ">
   <div class="row row-score">
     <div class="span4">
       <div class="row">
         <div class="span1">
-          <img ng-src="badges/2.svg" width="64" height="64"  class="ri scoreboard-badge img-polaroid" />
+          <img id='teamHomeBadge' ng-src="badges/2.svg" width="64" height="64"  class="ri scoreboard-badge img-polaroid" />
         </div>
         <div class="span2">
           <div class="row">
@@ -109,12 +109,13 @@
           </div>
         </div>
         <div class="span1">
-            <img ng-src="badges/1.svg" width="64" height="64" class="ri scoreboard-badge img-polaroid" />
+            <img id='teamGuestBadge' ng-src="badges/1.svg" width="64" height="64" class="ri scoreboard-badge img-polaroid" />
         </div>
       </div>
     </div>
   </div>
 </div>
+ </div>
 
 
  <div id="card-notification">
@@ -172,8 +173,8 @@
   $('#config').hide();
 
   teamHome = new flipCounter('scoreboard-team_home', {value: 0, inc: 1, pace: 0, auto: false});
-  var teamGuest = new flipCounter('scoreboard-team_guest', {value: 0, inc: 1, pace: 1000, auto: false});
-   var gameClock = new flipCounter('scoreboard-game_clock', {value: 0, inc: 1, pace: 1000, auto: true});
+  teamGuest = new flipCounter('scoreboard-team_guest', {value: 0, inc: 1, pace: 1000, auto: false});
+  gameClock = new flipCounter('scoreboard-game_clock', {value: 0, inc: 1, pace: 1000, auto: true});
   teamHome.setValue(1);
 
    // Scoreboard.configToggle();

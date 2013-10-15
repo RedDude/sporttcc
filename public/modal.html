@@ -1,14 +1,13 @@
 
 <div class="modal-header">
 <button type="button" class="close" ng-click="hide()" aria-hidden="true">×</button>
-  <h3>Modal header</h3>
+  <h3>TIMES</h3>
 </div>
 <div class="modal-body" >
   <div data-fade="1" ngModel="activeTab" bs-tabs>
     <div ng-repeat="tab in tabs" data-title="{{tab.name}}"><p>
       <div class="btn-group-vertical-3d">
-        <button ng-repeat="team in tab.teams track by team.id" class="btn btn-large btn-block" btn-checkbox  btn-checkbox-true="{{team.id}}" btn-checkbox-false="false"
-        ng-model="teams[team.id]">
+        <button ng-repeat="team in tab.teams track by team.idTeam" class="btn btn-large btn-block" btn-checkbox  btn-checkbox-true="{{team.idTeam}}" btn-checkbox-false="false" ng-model="teams[team.idTeam]">
         <div class="fs1" aria-hidden="true" >
           <img ng-src="badges/{{team.badge}}.svg" height="47" width="47" ="47" class="ri badge-icon" />{{team.name}}
         </div></button>

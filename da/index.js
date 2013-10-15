@@ -4,6 +4,7 @@ con = connectionFactory.getConnection();
 
 exports.teamDAO = require('./TeamDAO');
 exports.goalDAO = require('./GoalDAO');
+exports.cardDAO = require('./CardDAO');
 exports.gameDAO = require('./GameDAO');
 
 
